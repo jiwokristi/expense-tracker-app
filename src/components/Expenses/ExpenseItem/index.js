@@ -36,9 +36,12 @@ export default function ExpenseItem({ props }) {
               justifyContent="space-between"
               alignItems="center"
               item
+              zeroMinWidth
               style={{ flex: 1 }}
             >
-              <Typography variant="h6">{title}</Typography>
+              <Typography variant="h6" noWrap width="27rem">
+                {title}
+              </Typography>
               <PriceContainer>
                 <Typography variant="h6" style={{ color: grey[50] }}>
                   ${formatAmount(amount)}
