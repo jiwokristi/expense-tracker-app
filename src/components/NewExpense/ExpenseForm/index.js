@@ -79,8 +79,9 @@ export default function ExpenseForm({ onSaveExpenseData, onCancel }) {
               <Typography variant="caption">Title</Typography>
             </Grid>
           )}
-          <Grid item>
+          <Grid item style={{ width: "100%" }}>
             <TextField
+              fullWidth
               label={matchesMd ? "Title" : undefined}
               helperText={!enteredTitle.length ? "Required" : undefined}
               variant="outlined"
@@ -88,7 +89,7 @@ export default function ExpenseForm({ onSaveExpenseData, onCancel }) {
               onChange={titleChangeHandler}
               sx={{
                 "& .MuiInputBase-root": {
-                  width: matches500 ? "26.7rem" : matchesMd ? "24rem" : "22rem",
+                  width: matches500 ? "100%" : matchesMd ? "24rem" : "22rem",
                   height: 44,
                   borderRadius: "10px",
                   color: theme.palette.primary.main,
@@ -110,8 +111,9 @@ export default function ExpenseForm({ onSaveExpenseData, onCancel }) {
               <Typography variant="caption">Amount</Typography>
             </Grid>
           )}
-          <Grid item>
+          <Grid item style={{ width: "100%" }}>
             <TextField
+              fullWidth
               label={matchesMd ? "Amount" : undefined}
               helperText={!enteredAmount.length ? "Required" : undefined}
               variant="outlined"
@@ -131,7 +133,7 @@ export default function ExpenseForm({ onSaveExpenseData, onCancel }) {
               }}
               sx={{
                 "& .MuiInputBase-root": {
-                  width: matches500 ? "26.7rem" : matchesMd ? "24rem" : "22rem",
+                  width: matches500 ? "100%" : matchesMd ? "24rem" : "22rem",
                   height: 44,
                   borderRadius: "10px",
                   color: theme.palette.primary.main,
@@ -152,8 +154,8 @@ export default function ExpenseForm({ onSaveExpenseData, onCancel }) {
               <Typography variant="caption">Date</Typography>
             </Grid>
           )}
-          <Grid item>
-            <FormControl>
+          <Grid item style={{ width: "100%" }}>
+            <FormControl fullWidth>
               <DatePicker
                 showDaysOutsideCurrentMonth
                 format={"MM/DD/YYYY"}
@@ -189,11 +191,7 @@ export default function ExpenseForm({ onSaveExpenseData, onCancel }) {
                 onChange={dateChangeHandler}
                 sx={{
                   "& .MuiInputBase-root": {
-                    width: matches500
-                      ? "26.7rem"
-                      : matchesMd
-                      ? "24rem"
-                      : "22rem",
+                    width: matches500 ? "100%" : matchesMd ? "24rem" : "22rem",
                     height: 44,
                     marginBottom:
                       matchesMd && typeof enteredDate !== "string"
