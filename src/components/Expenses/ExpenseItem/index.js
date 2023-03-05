@@ -1,4 +1,13 @@
-import { Card, CardContent, Typography, Grid, styled } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  Typography,
+  Grid,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 import ExpenseDate from "components/Expenses/ExpenseDate";
@@ -13,13 +22,19 @@ const CustomCard = styled(Card)({
   boxShadow: "0px 3px 10px rgba(188, 200, 231, 0.2)",
 });
 
-const PriceContainer = styled("div")(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+const PriceButton = styled(Button)(({ theme }) => ({
+  border: `1.5px solid ${theme.palette.primary.main}`,
   padding: "0.5rem",
   borderRadius: 12,
 }));
 
 export default function ExpenseItem({ props }) {
+  const theme = useTheme();
+
+  const matches850 = useMediaQuery("(max-width:850px)");
+  const matches700 = useMediaQuery("(max-width:700px)");
+  const matches610 = useMediaQuery("(max-width:610px)");
+
   const { title, amount, date } = props;
 
   return (
@@ -33,20 +48,34 @@ export default function ExpenseItem({ props }) {
 
             <Grid
               container
+              direction={matches610 ? "column" : "row"}
               justifyContent="space-between"
-              alignItems="center"
+              alignItems={matches610 ? "flex-start" : "center"}
               item
               zeroMinWidth
               style={{ flex: 1 }}
             >
-              <Typography variant="h6" noWrap width="27rem">
-                {title}
-              </Typography>
-              <PriceContainer>
-                <Typography variant="h6" style={{ color: grey[50] }}>
-                  ${formatAmount(amount)}
+              <Grid item>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  width={matches700 ? "14rem" : matches850 ? "20rem" : "27rem"}
+                >
+                  {title}
                 </Typography>
-              </PriceContainer>
+              </Grid>
+              <Grid item>
+                <PriceButton variant={matches610 ? "outlined" : "contained"}>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      color: matches610 ? theme.palette.primary.main : grey[50],
+                    }}
+                  >
+                    ${formatAmount(amount)}
+                  </Typography>
+                </PriceButton>
+              </Grid>
             </Grid>
           </Grid>
         </CardContent>

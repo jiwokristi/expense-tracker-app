@@ -36,6 +36,7 @@ const ScrollableUl = styled("ul")(({ theme }) => ({
     borderLeft: "10px solid #fff",
   },
 }));
+
 export default function ExpensesList({ items }) {
   if (!items.length)
     return (
